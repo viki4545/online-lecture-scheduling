@@ -11,8 +11,6 @@ const AdminDashboard = () => {
     dispatch(fetchCourses());
   }, [dispatch]);
 
-  console.log(courses);
-
   return (
     <div className="dashboard-container">
       <div className="dashboard-header">

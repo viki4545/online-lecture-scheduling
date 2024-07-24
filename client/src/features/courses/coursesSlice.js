@@ -1,5 +1,6 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
+import { toast } from "react-toastify";
 
 import { BASE_URL } from "../../constants/constants";
 
@@ -13,6 +14,7 @@ export const fetchCourses = createAsyncThunk(
       const response = await axios.get(`${BASE_URL}/api/courses/all-courses`);
       return response.data;
     } catch (error) {
+      toast.error("Failed to fetch courses.");
       return rejectWithValue(error.response.data.message);
     }
   }
@@ -27,6 +29,7 @@ export const fetchLecturesByInstructorId = createAsyncThunk(
       );
       return response.data;
     } catch (error) {
+      toast.error("Failed to fetch lectures.");
       return rejectWithValue(error.response.data.message);
     }
   }
@@ -40,8 +43,10 @@ export const addCourse = createAsyncThunk(
         `${BASE_URL}/api/courses/add-course`,
         course
       );
+      toast.success("Course added successfully!");
       return response.data;
     } catch (error) {
+      toast.error("Failed to add course.");
       return rejectWithValue(error.response.data.message);
     }
   }
@@ -55,8 +60,10 @@ export const assignLecture = createAsyncThunk(
         `${BASE_URL}/api/courses/assign-lecture`,
         data
       );
+      toast.success("Lecture assign successfully!");
       return response.data;
     } catch (error) {
+      toast.error("Failed to assign lecture.");
       return rejectWithValue(error.response.data.message);
     }
   }

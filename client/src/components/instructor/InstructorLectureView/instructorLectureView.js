@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 // import { fetchInstructor } from "../../../features/instructors/instructorsSlice";
 import { fetchLecturesByInstructorId } from "../../../features/courses/coursesSlice";
 import { useParams } from "react-router-dom";
+import { toast } from "react-toastify";
 
 const InstructorLectureView = () => {
   const { id } = useParams();
@@ -20,6 +21,12 @@ const InstructorLectureView = () => {
       dispatch(fetchLecturesByInstructorId(id));
     }
   }, [id, dispatch]);
+
+  useEffect(() => {
+    if (status === "Failed") {
+      toast.error(error);
+    }
+  }, [status, error]);
 
   return (
     <div className="container">

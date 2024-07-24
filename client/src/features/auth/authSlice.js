@@ -1,6 +1,7 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 import { BASE_URL } from "../../constants/constants";
+import { toast } from "react-toastify";
 
 axios.defaults.baseURL = BASE_URL;
 axios.defaults.withCredentials = true;
@@ -10,8 +11,10 @@ export const loginUser = createAsyncThunk(
   async (userData, { rejectWithValue }) => {
     try {
       const response = await axios.post(`${BASE_URL}/api/auth/login`, userData);
+      toast.success("Logged in successfully!");
       return response.data;
     } catch (error) {
+      toast.error(error.response.data.message || "Login failed.");
       return rejectWithValue(error.response.data.message);
     }
   }
@@ -25,8 +28,10 @@ export const registerUser = createAsyncThunk(
         `${BASE_URL}/api/auth/register`,
         userData
       );
+      toast.success("Registration successful!");
       return response.data;
     } catch (error) {
+      toast.error(error.response.data.message || "Registration failed.");
       return rejectWithValue(error.response.data.message);
     }
   }

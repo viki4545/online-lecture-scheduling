@@ -10,13 +10,15 @@ import AddCourse from "./components/admin/AddCourse/addCourse";
 import AssignLecture from "./components/admin/AssignLecture/assignLecture";
 import InstructorLectureView from "./components/instructor/InstructorLectureView/instructorLectureView";
 import AdminNavbar from "./components/admin/AdminNavbar/adminNavbar";
-import InstructorNavbar from "./components/instructor/InstructorNavbar/instructorNavbar";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function App() {
   const user = useSelector((state) => state.auth.user);
 
   return (
     <div className="App">
+      <ToastContainer />
       <Router>
         <Header />
         {user && user.role === "admin" && <AdminNavbar />}
