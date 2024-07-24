@@ -1,16 +1,16 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
-axios.defaults.baseURL = "http://localhost:5000";
+import { BASE_URL } from "../../constants/constants";
+
+axios.defaults.baseURL = BASE_URL;
 axios.defaults.withCredentials = true;
 
 export const fetchCourses = createAsyncThunk(
   "courses/fetchCourses",
   async (_, { rejectWithValue }) => {
     try {
-      const response = await axios.get(
-        "http://localhost:5000/api/courses/all-courses"
-      );
+      const response = await axios.get(`${BASE_URL}/api/courses/all-courses`);
       return response.data;
     } catch (error) {
       return rejectWithValue(error.response.data.message);
@@ -23,7 +23,7 @@ export const fetchLecturesByInstructorId = createAsyncThunk(
   async (instructorId, { rejectWithValue }) => {
     try {
       const response = await axios.get(
-        `http://localhost:5000/api/courses/lectures/${instructorId}`
+        `${BASE_URL}/api/courses/lectures/${instructorId}`
       );
       return response.data;
     } catch (error) {
@@ -37,7 +37,7 @@ export const addCourse = createAsyncThunk(
   async (course, { rejectWithValue }) => {
     try {
       const response = await axios.post(
-        "http://localhost:5000/api/courses/add-course",
+        `${BASE_URL}/api/courses/add-course`,
         course
       );
       return response.data;
@@ -52,7 +52,7 @@ export const assignLecture = createAsyncThunk(
   async (data, { rejectWithValue }) => {
     try {
       const response = await axios.post(
-        "http://localhost:5000/api/courses/assign-lecture",
+        `${BASE_URL}/api/courses/assign-lecture`,
         data
       );
       return response.data;

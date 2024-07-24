@@ -10,11 +10,8 @@ const addCourseController = async (req, res, next) => {
       data: course,
     });
   } catch (error) {
-    console.error(error.message);
     res.status(400).json({
       message: "Failed to add course",
-      error: error.message,
-      data: {},
     });
   }
 };
@@ -51,10 +48,8 @@ const assignLectureController = async (req, res, next) => {
       data: updatedCourse,
     });
   } catch (error) {
-    console.error(error.message);
     res.status(400).json({
       message: "Failed to assigned the lecture to the instructor",
-      error: error.message,
     });
   }
 };
@@ -63,16 +58,13 @@ const assignLectureController = async (req, res, next) => {
 const getAllCourseController = async (req, res, next) => {
   try {
     const course = await Course.find();
-    console.log(course);
     res.status(201).json({
       message: "All courses fetched successfully!",
       data: course,
     });
   } catch (error) {
-    console.error(error.message);
     res.status(400).json({
       message: "Failed to fetch courses",
-      error: error.message,
     });
   }
 };
@@ -96,7 +88,7 @@ const getLecturesByInstructorId = async (req, res) => {
 
     res.status(200).json(lectures);
   } catch (error) {
-    res.status(500).json({ message: error.message });
+    res.status(500).json({ message: "Failed to fetch your lectures" });
   }
 };
 

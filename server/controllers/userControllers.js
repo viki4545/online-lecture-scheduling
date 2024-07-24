@@ -10,8 +10,6 @@ const generateToken = (id, role) => {
 const registerUserController = async (req, res, next) => {
   try {
     const { name, email, password } = req.body;
-
-    // Check if the user already exists
     const userExists = await User.findOne({ email });
 
     if (userExists) {
@@ -19,15 +17,12 @@ const registerUserController = async (req, res, next) => {
       return;
     }
 
-    // Hash password
     const hashedPassword = await bcrypt.hash(password, 10);
-
-    // Create new user
     const user = await User.create({
       name,
       email,
       password: hashedPassword,
-      role: "instructor", // Set the role if necessary
+      role: "instructor",
     });
 
     if (user) {
@@ -36,7 +31,7 @@ const registerUserController = async (req, res, next) => {
         httpOnly: true,
         secure: process.env.NODE_ENV === "production",
         sameSite: "Strict",
-        maxAge: 30 * 24 * 60 * 60 * 1000, // 30 days
+        maxAge: 24 * 60 * 60 * 1000,
       });
 
       res.status(201).json({
@@ -58,17 +53,15 @@ const loginUserController = async (req, res, next) => {
   try {
     const { email, password } = req.body;
 
-    // Find user by email
     const user = await User.findOne({ email });
 
-    // Check if user exists and password matches
     if (user && (await bcrypt.compare(password, user.password))) {
       const token = generateToken(user._id, user.role);
       res.cookie("jwt", token, {
         httpOnly: true,
         secure: process.env.NODE_ENV === "production",
         sameSite: "Strict",
-        maxAge: 30 * 24 * 60 * 60 * 1000, // 30 days
+        maxAge: 24 * 60 * 60 * 1000,
       });
 
       res.json({
@@ -108,8 +101,7 @@ const getAllInstructorController = async (req, res, next) => {
       });
     }
   } catch (error) {
-    console.error(error.message);
-    next();
+    next(error);
   }
 };
 

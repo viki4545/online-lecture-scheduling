@@ -1,7 +1,9 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
-axios.defaults.baseURL = "http://localhost:5000";
+import { BASE_URL } from "../../constants/constants";
+
+axios.defaults.baseURL = BASE_URL;
 axios.defaults.withCredentials = true;
 
 export const fetchInstructor = createAsyncThunk(
@@ -9,7 +11,7 @@ export const fetchInstructor = createAsyncThunk(
   async (_, { rejectWithValue }) => {
     try {
       const response = await axios.get(
-        "http://localhost:5000/api/instructors/all-instructor"
+        `${BASE_URL}/api/instructors/all-instructor`
       );
       return response.data;
     } catch (error) {
