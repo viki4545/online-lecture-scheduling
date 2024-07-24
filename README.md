@@ -1,6 +1,6 @@
 # online-lecture-scheduling
 
-This is the online lecture scheduling module in which the lecturer can schedule the lecture according to the date
+This is the online lecture scheduling module in which the admin can schedule the lecture according to the date to the instructor
 
 ## 📸 Screenshot :-
 
