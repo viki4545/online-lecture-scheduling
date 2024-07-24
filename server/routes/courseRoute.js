@@ -3,17 +3,30 @@ const {
   addCourseController,
   assignLectureController,
   getAllCourseController,
+  getLecturesByInstructorId,
 } = require("../controllers/courseControllers");
-const validateLectureHandler = require("../middlewares/validateLecture");
+const { authMiddleware, isAdmin } = require("../middlewares/authMiddleware");
 
 const courseRouter = express.Router();
 
-courseRouter.post("/add-course", addCourseController);
+courseRouter.post("/add-course", authMiddleware, isAdmin, addCourseController);
 courseRouter.post(
   "/assign-lecture",
-  validateLectureHandler,
+  authMiddleware,
+  isAdmin,
   assignLectureController
 );
-courseRouter.get("/courses", getAllCourseController);
+courseRouter.get(
+  "/all-courses",
+  authMiddleware,
+  isAdmin,
+  getAllCourseController
+);
+
+courseRouter.get(
+  "/lectures/:instructorId",
+  authMiddleware,
+  getLecturesByInstructorId
+);
 
 module.exports = courseRouter;

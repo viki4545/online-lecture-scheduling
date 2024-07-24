@@ -1,0 +1,27 @@
+.admin-navbar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #343a40;
+  padding: 10px;
+}
+
+.admin-navbar ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+}
+
+.admin-navbar li {
+  margin-right: 20px;
+}
+
+.admin-navbar a {
+  color: #fff;
+  text-decoration: none;
+}
+
+.admin-navbar a:hover {
+  text-decoration: underline;
+}

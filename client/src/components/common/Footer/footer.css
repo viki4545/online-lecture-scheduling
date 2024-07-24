@@ -1,0 +1,10 @@
+.footer {
+  background-color: #f1f1f1;
+  padding: 10px 0;
+  text-align: center;
+}
+
+.footer .container {
+  max-width: 800px;
+  margin: 0 auto;
+}
