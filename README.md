@@ -4,26 +4,26 @@ This is the online lecture scheduling module in which the admin can schedule the
 
 ## 📸 Screenshot :-
 
-- User Login
+- /login
 
   ![/login](/screenshots/login.PNG)
 
-- User Signup
+- /register
 
   ![/register](/screenshots/register.PNG)
 
-- My Lecture
+- /my-lectures/:id
 
   ![/my-lectures/:id](/screenshots/mylectures.PNG)
 
-- Admin Dashboard
+- /
 
   ![/](/screenshots/adminDashboard.PNG)
 
-- Add New Course
+- /add-course
 
   ![/add-course](/screenshots/addNewCourse.PNG)
 
-- Assign Lecture
+- /assign-lecture
 
   ![/assign-lecture](/screenshots/assignLecture.PNG)
