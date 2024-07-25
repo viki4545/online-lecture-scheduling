@@ -14,7 +14,7 @@ This is the online lecture scheduling module in which the admin can schedule the
 
 - /my-lectures/:id
 
-  ![/my-lectures/:id](/screenshots/mylectures.PNG)
+  ![/my-lectures/:id](/screenshots/myLectures.PNG)
 
 - /
 
